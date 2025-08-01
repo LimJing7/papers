@@ -1,4 +1,6 @@
 # Papers I read
+
+## LLM
 - Through the Valley: Path to Effective Long CoT Training for Small Language Models
     - Renjie Luo, Jiaxi Li, Chen Huang, Wei Lu
     - StatNLP Group; SUTD
@@ -25,3 +27,10 @@
             - misalignment loss computed at position b
     - this mtd improves close context while not seeming to lead to performance degradation for referring to distant context
         - ![tab 5](images/long_short_alignment/tab5.png)
+
+## Chem
+- An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
+    - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
+    - UC Riverside, Universidad CEU San Pablo, UC San Diego, IOCB Prague, Czech Institute of Informatics, Robotics and Cybernetics
+    - [harmonized MC/MC datasets (LC? / GC?)](https://external.gnps2.org/gnpslibrary)
+        - 189,467 spectra from 28,132 structures
