@@ -34,3 +34,29 @@
     - UC Riverside, Universidad CEU San Pablo, UC San Diego, IOCB Prague, Czech Institute of Informatics, Robotics and Cybernetics
     - [harmonized MC/MC datasets (LC? / GC?)](https://external.gnps2.org/gnpslibrary)
         - 189,467 spectra from 28,132 structures
+
+- NMR-Solver: Automated Structure Elucidation via Large-Scale Spectral Matching and Physics-Guided Fragment Optimization
+    -  Yongqi Jin, Jun-Jie Wang, Fanjie Xu, Xiaohong Ji, Zhifeng Gao, Linfeng Zhang, Guolin Ke, Rong Zhu, Weinan E
+    - Peking University, DP Technology, Xiamen University, AI for Science Institute
+    - four modules
+        - molecular optimization
+        - forward prediction (NMR-Net)
+        - database retrieval
+        - scenario adaptation
+    - Model Architecture
+        - ![fig 1](images/nmr_solver/fig1.png)
+    - C-F coupling is weird in simulated NMR
+    - NMR Comparison
+        - vector similarity
+            - gaussian convolution + 128 uniformly spaced spots
+        - set similarity
+            - optimal bipartite matching
+            - `linear_sum_assignment` in `scipy.optimize`
+    - Fragment-NMR-Based Molecular Optimization
+        - ![fig 4](images/nmr_solver/fig4.png)
+        - estimates chemical shifts of new molecules from parent molecules (shifts are mostly local effects)
+        - candidate selection is a 3 step process
+            - fast vector-based top-k complementary fragments
+            - candidates pairs are aggregated and re-ranked
+            - refined using set-similarity
+        - newly generated molecules then undergo the fwd model to get new simulated spectra
