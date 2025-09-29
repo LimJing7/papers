@@ -60,3 +60,20 @@
             - candidates pairs are aggregated and re-ranked
             - refined using set-similarity
         - newly generated molecules then undergo the fwd model to get new simulated spectra
+
+- An Integrated Method for Spectrum Extraction and Compound Identification from Gas Chromatography/Mass Spectrometry Data
+    - S. E. Stein
+    - NIST Hybrid Matching Algorithm
+    - scaled normalized dot product of spectra
+    - $100\frac{(\sum wm[A_uA_r]^{1/2})^2}{\sum A_um \sum A_rm}$
+    - w is a weighting for uncertain peaks (adapt to prediction scores?)
+    - corrections
+        - correct for spectra with very few predicted peaks
+            - $1/(1+wA)$
+            - $w=1/(a+\sum{A-1})$
+        - adjacent peak deconvolution (not needed in cleaned spectra)
+            - penalty of 2 for explicit overlapping component
+        - component purity
+            - $1.0 \log_{10}(purity) + 0.6$
+        - detection threshold
+            - $(1-threshold)^{0.3}$
