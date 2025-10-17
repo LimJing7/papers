@@ -28,6 +28,12 @@
     - this mtd improves close context while not seeming to lead to performance degradation for referring to distant context
         - ![tab 5](images/long_short_alignment/tab5.png)
 
+- Contrastive Decoding for Synthetic Data Generation in Low-Resource Language Modeling
+    - Jannek Ulm, Kevin Du, Vésteinn Snæbjarnarson
+    - ETH Zürich, University of Copenhagen
+    - contrastive decoding defines a probabilty distribution defined by the differences between a good and a bad model
+    - use CD when downstream targets emphasize multi-step inference, state maintenance, or world knowledge; use vanilla sampling when the objective is to minimize perplexity or to improve core grammaticality.
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
