@@ -34,6 +34,22 @@
     - contrastive decoding defines a probabilty distribution defined by the differences between a good and a bad model
     - use CD when downstream targets emphasize multi-step inference, state maintenance, or world knowledge; use vanilla sampling when the objective is to minimize perplexity or to improve core grammaticality.
 
+- Pretraining LLM with Latent Thoughts in Continuous Space
+    - Boyi Zeng, He Li, Shixiang Song, Yixuan Wang, Ziwei He, Xinbing Wang, Zhouhan Lin
+    - LUMIA Lab, Shanghai Jiao Tong University, Shanghai AI Lab, Shanghai Innovation Institute
+    - Adds one intermediate token between each token that is unconstrained (continuous)
+        - ![fig 2](images/latent_cont_space/inference.png)
+    - training requires finding a fixed-point operator to parallelize
+        - ![fig 3](images/latent_cont_space/training.png)
+        - one normal forward pass to produce hidden states for all tokens
+        - interleave hidden states
+        - do forward pass a few more time to approach true hidden state
+        - expts show converge before 5 passes
+        - they used randomly chosen {2,3,4} passes
+        - back-propagation through time? seems to be skipped? so the hidden states are not directly optimized for
+    - hidden states inherit the same positional embeddings as original token
+    - oh works for CPT too!
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
