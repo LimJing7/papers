@@ -50,6 +50,28 @@
     - hidden states inherit the same positional embeddings as original token
     - oh works for CPT too!
 
+- Alif: Advancing Urdu Large Language Models via Multilingual Synthetic Data Distillation
+    - Muhammad Ali Shafique, Kanwal Mehreen, Muhammad Arham, Maaz Amjad, Sabur Butt, Hamza Farooq
+    - Traversaal.ai, University of British Columbia, Texas Tech University, Institute for the Future of Education, Tecnológico de Monterrey
+    - Details a way of creating an instruct dataset in a low-resource alnguage
+        - 7 tasks: generation, ethics, qa, reasoning, translation, classification, sentiment-analysis
+        - unique prompts+seeds for each task
+        - collect all generated prompts into a global task pool
+        - each prompt is augmented with 4 human-annotated seed values and 2 machine generated ones:
+            - GPT-4o is then used to generate 20 instructions and corresponding outputs
+        - filtering:
+            - filter instructions <3 and >150 words
+            - filter problematic keywords
+            - filter non-en and non-urdu characters
+            - filter instructions >0.7 rouge similar to selected instructions
+            - final human filtering
+    - [Code](https://github.com/traversaal-ai/alif-urdu-llm)
+        - contains prompts and seeds
+    - [urdu-instruct dataset](https://huggingface.co/datasets/large-traversaal/urdu-instruct)
+        - urdu-native COT reasoning
+    - uses LoRA on QKVO, MLP, embed/output layers
+
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
