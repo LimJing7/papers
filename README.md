@@ -83,3 +83,13 @@
             - $1.0 \log_{10}(purity) + 0.6$
         - detection threshold
             - $(1-threshold)^{0.3}$
+
+- A New Matching Algorithm for High Resolution Mass Spectra
+    - Michael Edberg Hansen, Jørn Smedsgaard
+    - Technical University of Denmark
+    - based on Jeffreys-Matusitas (JM) distance
+    - hypothesis 1: each peak can match with at most 1 peak
+    - automatic peak matching using the following:
+        - ![fig 4](images/ams_matching/alignment_algo.png)
+    - AMS Distance
+        - $$d_{U \mapsto R} = \frac{w_0}{L} \sum_{\{q_l, p_l\} \in \Lambda} w \left( \phi^U_{q_l}, \phi^R_{p_l}\right) \cdot d_{q_j, p_l}$$
