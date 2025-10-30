@@ -53,7 +53,7 @@
 - Alif: Advancing Urdu Large Language Models via Multilingual Synthetic Data Distillation
     - Muhammad Ali Shafique, Kanwal Mehreen, Muhammad Arham, Maaz Amjad, Sabur Butt, Hamza Farooq
     - Traversaal.ai, University of British Columbia, Texas Tech University, Institute for the Future of Education, Tecnológico de Monterrey
-    - Details a way of creating an instruct dataset in a low-resource alnguage
+    - Details a way of creating an instruct dataset in a low-resource language
         - 7 tasks: generation, ethics, qa, reasoning, translation, classification, sentiment-analysis
         - unique prompts+seeds for each task
         - collect all generated prompts into a global task pool
@@ -70,6 +70,21 @@
     - [urdu-instruct dataset](https://huggingface.co/datasets/large-traversaal/urdu-instruct)
         - urdu-native COT reasoning
     - uses LoRA on QKVO, MLP, embed/output layers
+
+- Context-level Language Modeling by Learning Predictive Context Embeddings
+    - Beiya Dai, Yuliang Liu, Daozheng Xue, Qipeng Guo, Kai Chen, Xinbing Wang, Bowen Zhou, Zhouhan Lin
+    - LUMIA Lab, Shanghai Jiao Tong University, Shanghai AI Laboratory, Tsinghua University, Nanjing University
+    - Defines a Context Predictor
+        - encode preceding tokens into context embeddings
+        - autoregressively forecast the next context embedding
+        - fuse the predictive context back into token-level decoding process
+    - ![ContextLM architecture](images/context_lm/architecture.png)
+    - is better results just because of more parameters?
+        - seems to be ok, cos the extra tokens are 'stolen' from the normal part of the model
+    - uses a fixed chunk size `w`
+        - smaller chunk size gives better perplexity
+        - did not show ablation results for long context results with different 'w'
+    - 2 layer decoder only architecture seems best
 
 
 ## Chem
