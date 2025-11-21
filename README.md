@@ -86,6 +86,16 @@
         - did not show ablation results for long context results with different 'w'
     - 2 layer decoder only architecture seems best
 
+- A Rigorous Evaluation of LLM Data Generation Strategies for Low-Resource Languages
+    - Tatiana Anikina, Jan Cegin, Jakub Simko, Simon Ostermann
+    - German Research Institute for Artificial Intelligence (DFKI), Brno University of Technology, Kempelen Institute of Intelligent Technologies
+    - conducted experiments regarding sythetic task-specific data generation
+    - 3 methods
+        - summarized labels
+        - demonstration
+        - revision
+    - using target language demonstrations together with LLM-based revision is the best
+
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
