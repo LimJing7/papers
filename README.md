@@ -96,6 +96,21 @@
         - revision
     - using target language demonstrations together with LLM-based revision is the best
 
+- Quiet Feature Learning in Algorithmic Tasks
+    - Prudhviraj Naidu, Zixian Wang, Leon Bergen, Ramamohan Paturi
+    - UC San Diego
+    - validation loss barely moves, then abruptly decreases
+    - "averaging" many different tasks hide abrupt transitions for each task
+    - 2 phases of learning
+        - slow phase, no/minimal changes in val loss
+        - fast phase, sharp drop in loss
+    - quiet features (impt for task) are learnt in slow phase
+    - expts conducted on 10 algorithmic tasks
+    - ![Quiet Features within Single Training Runs](images/quiet_feats/fig2.png)
+    - ablations show that quiet features are impt for task performance
+    - models trained seem to be small
+    - author's discussion: does complex language models show similar issues?
+
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
