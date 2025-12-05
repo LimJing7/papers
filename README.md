@@ -111,6 +111,15 @@
     - models trained seem to be small
     - author's discussion: does complex language models show similar issues?
 
+- DCAD-2000: A Multilingual Dataset across 2000+ Languages with Data Cleaning as Anomaly Detection
+    - Yingli Shen， Wen Lai， Shuo Wang， Xueren Zhang， Kangyang Luo， Alexander Fraser， Maosong Sun
+    - Tsinghua University, Technical University of Munich
+    - Use anomaly detection to filter for bad examples
+    - 8 features: number of words, character/word repetition ratio, special character/word ratio, stopword ratio, flagged words ratio, language identification score and perplexity score (KenLM)
+    - Tried various anomaly detection algorithms, Isolation Forest performs the best
+    - Filtered examples seem to be more discriminative compared to just using thresholds
+        - ![Anomaly Results](images/dcad-2000/ano-det-res.png)
+
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
