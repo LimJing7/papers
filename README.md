@@ -120,6 +120,39 @@
     - Filtered examples seem to be more discriminative compared to just using thresholds
         - ![Anomaly Results](images/dcad-2000/ano-det-res.png)
 
+- Qwen 2.5 LC
+    - increase RoPE base from 10e4 to 10e6
+    - staged context extension
+    - each stage is 60% of previous length and 40% of new length
+    - use YARN and DCA in inference
+
+- YaRN: Efficient Context Window Extension of Large Language Models
+    - Bowen Peng, Jeffrey Quesnelle, Honglu Fan, Enrico Shippole
+    - Nous Research, EleutherAI, Enrico Shippole
+    - general form of RoPE function
+        - $f'_\bold{w}(x_m, g(m), h(\theta_d))$
+    - position interpolation
+        - $g(m) = m/s$; $h(\theta_d)) = \theta_d$
+    - NTK-aware
+        - $g(m) = m$; $h(\theta_d)) = b'^{\frac{-2d}{|D|}}$; $b' = b\cdot s^{\frac{|D|}{|D|-2}}$
+    - NTK-by-parts
+        - consider high freq and low freq terms differently
+        - high freq == short wave-length => don't change
+            - mostly relative positions
+        - low freq == long wave-length => do PI
+            - mostly absolute positions
+        - $L$ is original context size
+        - define ramp function: $r(d) = \frac{L}{2\pi b'^{\frac{2d}{|D|}}}$
+        - define $\alpha$ and $\beta$, below $\alpha$, we do PI, above $\beta$, we don't do anything
+        - interpolate in between
+        - $\gamma(r) = \begin{cases}0, & r < \alpha \\ 1, & r > \beta \\ \frac{r-\alpha}{\beta-\alpha}, & \text{otherwise.} \\ \end{cases}$
+        - $g(m) = m$; $h(\theta_d)) = \left(1-\gamma \left(r(d) \right)\right)\frac{\theta_d}{s} + \gamma \left(r(d)\right)\theta_d$
+    - Dynamic NTK
+        - automatically update the scaling factor
+    - YaRN
+        - takes NTK-by-parts and also scale attn computation by $1/\sqrt{t}$
+        - the scaling can be put into the rope computation
+
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
