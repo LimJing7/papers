@@ -157,7 +157,15 @@
     - Steven H. Wang, Maksim Zubkov, Kexin Fan, Sarah Harrell, Yuyang Sun, Wei Chen, Andreas Plesner, Roger Wattenhofer
     - ETH Zurich, NYU, University of Washington, Yale University, The Atticus Project
     - introduces the [Atticus Clause Retrieval Dataset (ACORD)](https://huggingface.co/datasets/theatticusproject/acord)
-    -
+    - clause retrieval is a hard task but impt (lawyers do this to write contracts)
+    - contracts are multi-layered, long, including what's required and what's not required and have many cross-references
+    <!-- - 4 clauses are labelled
+        - limitation of liability
+        - indemnification
+        - most favored nation
+        - termination of convenience -->
+    - 114 unique queries, target 1 or more legal concepts across 9 categories, >126000 query-clause pairs
+    - 400 contracts from CUAD and 50 ToS from fortune 500 compaines
 
 
 ## Chem
