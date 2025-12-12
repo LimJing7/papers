@@ -153,6 +153,12 @@
         - takes NTK-by-parts and also scale attn computation by $1/\sqrt{t}$
         - the scaling can be put into the rope computation
 
+- ACORD: An Expert-Annotated Dataset for Legal Contract Clause Retrieval
+    - Steven H. Wang, Maksim Zubkov, Kexin Fan, Sarah Harrell, Yuyang Sun, Wei Chen, Andreas Plesner, Roger Wattenhofer
+    - ETH Zurich, NYU, University of Washington, Yale University, The Atticus Project
+    - introduces the [Atticus Clause Retrieval Dataset (ACORD)](https://huggingface.co/datasets/theatticusproject/acord)
+    -
+
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
