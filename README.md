@@ -111,6 +111,78 @@
         - ![extending training beyond 64k](images/prolong/tab7.png)
         - question: why not directly train at 512K
 
+- Quiet Feature Learning in Algorithmic Tasks
+    - Prudhviraj Naidu, Zixian Wang, Leon Bergen, Ramamohan Paturi
+    - UC San Diego
+    - validation loss barely moves, then abruptly decreases
+    - "averaging" many different tasks hide abrupt transitions for each task
+    - 2 phases of learning
+        - slow phase, no/minimal changes in val loss
+        - fast phase, sharp drop in loss
+    - quiet features (impt for task) are learnt in slow phase
+    - expts conducted on 10 algorithmic tasks
+    - ![Quiet Features within Single Training Runs](images/quiet_feats/fig2.png)
+    - ablations show that quiet features are impt for task performance
+    - models trained seem to be small
+    - author's discussion: does complex language models show similar issues?
+
+- DCAD-2000: A Multilingual Dataset across 2000+ Languages with Data Cleaning as Anomaly Detection
+    - Yingli Shen， Wen Lai， Shuo Wang， Xueren Zhang， Kangyang Luo， Alexander Fraser， Maosong Sun
+    - Tsinghua University, Technical University of Munich
+    - Use anomaly detection to filter for bad examples
+    - 8 features: number of words, character/word repetition ratio, special character/word ratio, stopword ratio, flagged words ratio, language identification score and perplexity score (KenLM)
+    - Tried various anomaly detection algorithms, Isolation Forest performs the best
+    - Filtered examples seem to be more discriminative compared to just using thresholds
+        - ![Anomaly Results](images/dcad-2000/ano-det-res.png)
+
+- Qwen 2.5 LC
+    - increase RoPE base from 10e4 to 10e6
+    - staged context extension
+    - each stage is 60% of previous length and 40% of new length
+    - use YARN and DCA in inference
+
+- YaRN: Efficient Context Window Extension of Large Language Models
+    - Bowen Peng, Jeffrey Quesnelle, Honglu Fan, Enrico Shippole
+    - Nous Research, EleutherAI, Enrico Shippole
+    - general form of RoPE function
+        - $f'_\bold{w}(x_m, g(m), h(\theta_d))$
+    - position interpolation
+        - $g(m) = m/s$; $h(\theta_d)) = \theta_d$
+    - NTK-aware
+        - $g(m) = m$; $h(\theta_d)) = b'^{\frac{-2d}{|D|}}$; $b' = b\cdot s^{\frac{|D|}{|D|-2}}$
+    - NTK-by-parts
+        - consider high freq and low freq terms differently
+        - high freq == short wave-length => don't change
+            - mostly relative positions
+        - low freq == long wave-length => do PI
+            - mostly absolute positions
+        - $L$ is original context size
+        - define ramp function: $r(d) = \frac{L}{2\pi b'^{\frac{2d}{|D|}}}$
+        - define $\alpha$ and $\beta$, below $\alpha$, we do PI, above $\beta$, we don't do anything
+        - interpolate in between
+        - $\gamma(r) = \begin{cases}0, & r < \alpha \\ 1, & r > \beta \\ \frac{r-\alpha}{\beta-\alpha}, & \text{otherwise.} \\ \end{cases}$
+        - $g(m) = m$; $h(\theta_d)) = \left(1-\gamma \left(r(d) \right)\right)\frac{\theta_d}{s} + \gamma \left(r(d)\right)\theta_d$
+    - Dynamic NTK
+        - automatically update the scaling factor
+    - YaRN
+        - takes NTK-by-parts and also scale attn computation by $1/\sqrt{t}$
+        - the scaling can be put into the rope computation
+
+- ACORD: An Expert-Annotated Dataset for Legal Contract Clause Retrieval
+    - Steven H. Wang, Maksim Zubkov, Kexin Fan, Sarah Harrell, Yuyang Sun, Wei Chen, Andreas Plesner, Roger Wattenhofer
+    - ETH Zurich, NYU, University of Washington, Yale University, The Atticus Project
+    - introduces the [Atticus Clause Retrieval Dataset (ACORD)](https://huggingface.co/datasets/theatticusproject/acord)
+    - clause retrieval is a hard task but impt (lawyers do this to write contracts)
+    - contracts are multi-layered, long, including what's required and what's not required and have many cross-references
+    <!-- - 4 clauses are labelled
+        - limitation of liability
+        - indemnification
+        - most favored nation
+        - termination of convenience -->
+    - 114 unique queries, target 1 or more legal concepts across 9 categories, >126000 query-clause pairs
+    - 400 contracts from CUAD and 50 ToS from fortune 500 compaines
+
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
