@@ -96,6 +96,20 @@
         - revision
     - using target language demonstrations together with LLM-based revision is the best
 
+- How to Train Long-Context Language Models (Effectively)
+    - Tianyu Gao, Alexander Wettig, Howard Yen, Danqi Chen
+    - Princeton Language and Intelligence, Princeton University
+    - Long Context Experiments
+    - SFT before LC evals => better signals
+        - ![LC evals b4/aft SFT](images/prolong/fig2.png)
+    - long data => slimpajama books and code (concatenate files in each repo together)
+    - 60% LC data vs 40% short data is optimal
+        - ![LC evals across different amount of long data](images/prolong/fig3.png)
+        - only using LC data is bad after SFT
+            - hypothesize to be that LC only training gives bad initialization
+    - training at longer context lengths help
+        - ![extending training beyond 64k](images/prolong/tab7.png)
+        - question: why not directly train at 512K
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
