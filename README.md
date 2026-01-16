@@ -180,8 +180,31 @@
         - most favored nation
         - termination of convenience -->
     - 114 unique queries, target 1 or more legal concepts across 9 categories, >126000 query-clause pairs
-    - 400 contracts from CUAD and 50 ToS from fortune 500 compaines
+    - 400 contracts from CUAD and 50 ToS from fortune 500 companies
 
+- DUET: Optimizing Training Data Mixtures via Feedback from Unseen Evaluation Tasks
+    - Zhiliang Chen, Gregory Kang Ruey Lau, Chuan Sheng Foo, Bryan Kian Hsiang Low
+    - NUS, A*STAR
+    - use Bayesian Optimization to choose the most useful training example for an unseen task
+    - $\kappa(r, r'): \mathbb{R}^n \to \mathbb{R}$, covariance between 2 random examples
+    - posterior for mean and variance of $r'$
+        - ![eqn 1](images/duet/eqn1.png)
+    - acquisition fn:
+        - $r_{t+1} = \text{argmin}_r \mu_t(r) - \beta_{t+1}\sigma_t(r)$
+    - uses a global to local approach to optimize training mix
+    - global: feedback from unseen eval task to optimize mixing ratio
+    - local: uses influence fn as a data selection mtd
+    - $\min_{\mathcal{X} \in \mathcal{D}} \mathcal{L}_{eval}(\theta_{\mathcal{X}})$
+    - reparametrize into
+        - $\min_{r \in \mathbb{R}^n} \min_{\mathcal{X}\in S_r} \mathcal{L}_{eval}(\theta_{\mathcal{X}})$
+        - outer opt problem is global, use BO to propose mixing ratios
+        - inner opt problem is local, use IF to choose high quality subset to satisfy the mixing ratio
+    - inner opt
+        - train a smaller LM for each domain
+        - compute the influence of each data-pt wrt to the model for it's domain
+        - use the IF value to do weighted sampling when creating the datamix
+    - outer opt
+        - observe that the inner opt can be express as $f(r)$, hence we use BO as defined previously
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
