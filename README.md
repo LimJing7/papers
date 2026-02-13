@@ -206,6 +206,42 @@
     - outer opt
         - observe that the inner opt can be express as $f(r)$, hence we use BO as defined previously
 
+- Trinity Large
+    - Arcee-AI
+    - MoE: 400B-A13B
+    - features
+        - Muon Optimizer
+        - no linear bias
+        - 200k vocab
+        - GQA, QK-norm, gated-attn, 3:1 local/global pattern, RoPE+SWA in local, NoPE in global
+        - soft-clamped Momentum Expert Bias Updates (SMEBU) load balancing
+            - tanh soft-clamped magnitude-aware update
+            - add a momentum buffer
+        - seq-wise aux loss
+            - follow deepseek
+        - depth-scaled sandwich norm
+        - initialization
+        - forward pass, scale embed's activations by $\sqrt{d}$
+    - 8T synthetic data from DatologyAI
+        - 6.5T synthetic web data
+        - 1T synthetic multilingual data
+        - 800B HQ synthetic code
+        - rephrasing
+            - format transform
+            - style modification
+            - content restructuring to improve info density and accessibility
+        - Batch Heterogenity (BatchHet)
+            -  $\max_i \mathcal{L}_i^{(t)} − \frac{1}{M} \sum_{i=1}^{M} \mathcal{L}_i^{(t)}$
+            - max delta of a microbatch loss with the mean loss of the batch
+            - strongly correlates with training instability
+        - long-context extension
+            - 117b tokens over 35.6 million docs
+            - sample probs that scale with doc lengths
+            - olmOCR + finePDF-edu
+            - full-length prolong datasets
+                - code is particularly good
+            - instruct data using AFM context-extension recipe
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
