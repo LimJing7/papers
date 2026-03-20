@@ -242,6 +242,16 @@
                 - code is particularly good
             - instruct data using AFM context-extension recipe
 
+- Beyond Web: Lessons from Scaling Synthetic Data for Trillion-scale Pretraining
+    - Datology
+    - Rewriting
+    - data quality matters
+    - distributional style matching is impt
+    - diversity in generation
+    - good rephraser is hard
+        - most models work adequately, but choosing the best model is hard
+    - 3b models seems to do reasonably for rephrasing
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
