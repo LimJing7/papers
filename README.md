@@ -252,6 +252,25 @@
         - most models work adequately, but choosing the best model is hard
     - 3b models seems to do reasonably for rephrasing
 
+- ÜberWeb: Insights from Multilingual Curation for a 20-Trillion-Token Dataset
+    - Datology
+    - replacing En data with non-En is ok with proper curation
+    - 4 achievements
+        - cross-lingual transfer improves with data quality
+        - optimal performance requires bespoke multilingual curation
+        - data quality persists through translation
+            - translating HQ data yields gains vs random EN data
+        - curation makes multilingual scaling remarkably compute-efficient
+    - data curation pipeline
+        - filtering
+        - embedding for geometry-based curation
+        - synthetic rephrasing
+    - curation on multilingual transfer dynamics and language specific performance
+        - improving en data quality => improves cross-lingual performance
+        - closer language similarity to en => more gains
+        - bespoke multilingual curation is necessary
+        - curating non-english data => improves english performance
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
