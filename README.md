@@ -271,6 +271,22 @@
         - bespoke multilingual curation is necessary
         - curating non-english data => improves english performance
 
+- Embedding-based In-Context Prompt Training for Enhancing LLMs as Text Encoders
+    - Ailiang Lin, Zhuoyun Li, Keyu Mao, Kotaro Funakoshi, Manabu Okumura
+    - Institute of Science Tokyo, Tencent
+    - Embedding-based Prompt training with In-Context demonstrations (EPIC)
+        - use vector representation instead of text for the ICL samples
+        - g = 2 layer MLP + GELU
+        - vec_rep
+            - query: $q_i = g(f_{\theta}^{EOS}([I; Q_i;[\text{<EOS>}]]))$
+            - passage: $p_i = g(f_{\theta}^{EOS}([I; P_i;[\text{<EOS>}]]))$
+    - contrastive learning
+        - InfoNCE loss
+        - also include different number of demonstrations to construct the embeddings
+    - embeddings are computed once for each task during inference
+    - this training improves performance even for tasks without demonstrations
+    - state of the art performance in Massive Text Embedding Benchmark (MTEB)
+
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
     - Michael Strobel, Alberto Gil-de-la-Fuente, Mohammad Reza Zare Shahneh, Yasin El Abiead, Roman Bushuiev, Anton Bushuiev, Tomáš Pluskal, Mingxun Wang
