@@ -286,6 +286,21 @@
     - embeddings are computed once for each task during inference
     - this training improves performance even for tasks without demonstrations
     - state of the art performance in Massive Text Embedding Benchmark (MTEB)
+    - faster training
+        - discrete ICL, increases training time by 60%
+        - EPIC only increases it by 19%
+    - ablations
+        - robust across different scales from 1B to 8B
+        - number of continuous vectors
+            - single vector each is sufficient for query and passage
+        - different ICL prompt formats
+            - current format is best
+        - different compression strategies
+            - compressing both query and passage is best
+        - soft prompts
+            - EPIC does better than soft prompts
+        - different attn and pooling mtds
+            - bad <= possibily due to mismatch between pretraining and finetuning
 
 ## Chem
 - An evaluation methodology for machine learning-based tandem mass spectra similarity prediction
